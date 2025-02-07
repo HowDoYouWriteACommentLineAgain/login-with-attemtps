@@ -32,19 +32,22 @@ function App() {
   function handleClicks(){
     const usernameMatch = (username === hardUsername);
     const passwordMatch = (password === hardassword)
-    const withinAttempts = (attempts < 3);
+    const withinAttempts = (attempts < 2);
 
-    const passedWithinThreshold = usernameMatch && passwordMatch && withinAttempts;
+    const passedWithinThreshold = usernameMatch && passwordMatch && withinAttempts+1;
 
     if(passedWithinThreshold){
       setAttempts(0);
+      setDisabled(false);
+      // console.log("PASSED");
       return 0;
     };
 
     if(withinAttempts){
-      setAttempts(attempts+1);
+      setAttempts(attempts+1);      
     }else{
-      setDisabled(true);      
+      setAttempts(attempts+1); 
+      setDisabled(true);
     }
     // console.log({passedWithinThreshold, withinAttempts, attempts});
     
@@ -52,7 +55,7 @@ function App() {
 
   return (
 
-      <div className='form'>
+      <fieldset className='form'>
         <h1>REGISTER FORM</h1>
         <i>Attempts used: {attempts}/3</i>
         <Inputs 
@@ -70,7 +73,7 @@ function App() {
           onChange={(e)=> setPassword(e.target.value)}
         />
         <Inputs types="submit" name="submit" onClick={()=>handleClicks()} disabled={isDisabled}/>
-    </div>
+    </fieldset>
 
   );
 }
