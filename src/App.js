@@ -4,7 +4,7 @@ import {useState} from 'react';
 function Inputs({name, types, placeholder, onClick, onChange, disabled}){
 
   return(
-
+    //testing something...
     <input 
       className="Input" 
       type={types} 
